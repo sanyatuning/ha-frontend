@@ -37,6 +37,7 @@ import {
 } from "../../../src/dialogs/generic/show-dialog-box";
 import { haStyle } from "../../../src/resources/styles";
 import { HomeAssistant } from "../../../src/types";
+import "../components/hassio-progress";
 import { showDialogSupervisorUpdate } from "../dialogs/update/show-dialog-update";
 import { hassioStyle } from "../resources/hassio-style";
 
@@ -157,6 +158,12 @@ export class HassioUpdate extends LitElement {
           >
             ${this.supervisor.localize("common.update")}
           </ha-progress-button>
+          ${progressName
+            ? html`<hassio-progress
+                .hass=${this.hass}
+                .name=${key}
+              ></hassio-progress>`
+            : ""}
         </div>
       </ha-card>
     `;

@@ -68,6 +68,7 @@ import { haStyle } from "../../../../src/resources/styles";
 import { HomeAssistant } from "../../../../src/types";
 import { bytesToString } from "../../../../src/util/bytes-to-string";
 import "../../components/hassio-card-content";
+import "../../components/hassio-progress";
 import "../../components/supervisor-metric";
 import { showHassioMarkdownDialog } from "../../dialogs/markdown/show-dialog-hassio-markdown";
 import { showDialogSupervisorUpdate } from "../../dialogs/update/show-dialog-update";
@@ -174,6 +175,10 @@ class HassioAddonInfo extends LitElement {
                 <mwc-button @click=${this._updateClicked}>
                   ${this.supervisor.localize("common.update")}
                 </mwc-button>
+                <hassio-progress
+                  .hass=${this.hass}
+                  name=${`addon_${this.addon.slug}`}
+                ></hassio-progress>
                 ${this.addon.changelog
                   ? html`
                       <mwc-button @click=${this._openChangelog}>
@@ -635,6 +640,10 @@ class HassioAddonInfo extends LitElement {
                   >
                     ${this.supervisor.localize("addon.dashboard.install")}
                   </ha-progress-button>
+                  <hassio-progress
+                    .hass=${this.hass}
+                    name=${`addon_${this.addon.slug}`}
+                  ></hassio-progress>
                 `}
           </div>
           <div>
